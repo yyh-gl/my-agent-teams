@@ -30,7 +30,7 @@ Agent ツールで各メンバーを起動する。**`team_name: "dev-team"` と
 - Reviewer: `subagent_type: "reviewer"`, `name: "Reviewer"`, `team_name: "dev-team"`
 - Planner（Largeタスクのみ）: `subagent_type: "planner"`, `name: "Planner"`, `team_name: "dev-team"`
 
-複雑度に応じた判断は `teams/dev/agents/lead.md` のワークフローを参照。
+複雑度に応じた判断は `.claude/agents/lead.md` のワークフローを参照。
 
 ### Step 4: タスクを割り当てる
 
@@ -149,8 +149,8 @@ TaskUpdate で `owner` をメンバー名に設定してタスクのオーナー
 
 各agentの詳細なワークフロー・指示は以下を参照:
 
-- `teams/dev/agents/lead.md` — Leadエージェント定義
-- `teams/dev/agents/planner.md` — Plannerエージェント定義
-- `teams/dev/agents/implementer.md` — Implementerエージェント定義
-- `teams/dev/agents/tester.md` — Testerエージェント定義
-- `teams/dev/agents/reviewer.md` — Reviewerエージェント定義
+- `.claude/agents/lead.md` — Leadエージェント定義
+- `.claude/agents/planner.md` — Plannerエージェント定義
+- `.claude/agents/implementer.md` — Implementerエージェント定義
+- `.claude/agents/tester.md` — Testerエージェント定義
+- `.claude/agents/reviewer.md` — Reviewerエージェント定義
