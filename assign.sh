@@ -54,23 +54,25 @@ for agent_file in "$TEAM_DIR/agents/"*.md; do
   echo "  -> .claude/agents/$agent_name"
 done
 
-# Copy team SKILL.md to .claude/skills/
+# Copy team SKILL.md to .claude/skills/<skill-name>/SKILL.md
 TEAM_SKILL="$TEAM_DIR/SKILL.md"
 if [[ -f "$TEAM_SKILL" ]]; then
-  skill_name="$(basename "$(dirname "$TEAM_SKILL")")"
-  TARGET_SKILL="$SKILLS_DIR/$skill_name.md"
+  skill_name="$(grep '^name:' "$TEAM_SKILL" | head -1 | sed 's/^name:[[:space:]]*//')"
+  TARGET_SKILL_DIR="$SKILLS_DIR/$skill_name"
+  TARGET_SKILL="$TARGET_SKILL_DIR/SKILL.md"
   if [[ -f "$TARGET_SKILL" ]]; then
     echo ""
-    echo "Warning: .claude/skills/$skill_name.md already exists."
+    echo "Warning: .claude/skills/$skill_name/SKILL.md already exists."
     read -r -p "Overwrite? [y/N] " answer
     case "$answer" in
       [yY]) ;;
-      *) echo "Skipped .claude/skills/$skill_name.md"; exit 0 ;;
+      *) echo "Skipped .claude/skills/$skill_name/SKILL.md"; exit 0 ;;
     esac
   fi
+  mkdir -p "$TARGET_SKILL_DIR"
   cp "$TEAM_SKILL" "$TARGET_SKILL"
   echo "Copying team skill..."
-  echo "  -> .claude/skills/$skill_name.md"
+  echo "  -> .claude/skills/$skill_name/SKILL.md"
 fi
 
 echo ""
